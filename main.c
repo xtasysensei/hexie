@@ -1,8 +1,9 @@
 #include <stdio.h>
+#include <stdlib.h>
 
-struct BytesBuffer {
-    char bytes[];
-};
+// struct BytesBuffer {
+//     char bytes[];
+// };
 
 int main(int args, char** argv){
 
@@ -14,22 +15,24 @@ int main(int args, char** argv){
     // }
     if (args > 2) {
         printf("Too many arguments");
+        exit(1);
 
     } else if(args < 2) {
         printf("Not enough arguments");
+        exit(1);
     }
 
     FILE *ptr = fopen(file_name, "rb");
     if (ptr == NULL){
         printf("read failed");
-        return 1;
+        exit(1);
     }
-
-    struct BytesBuffer buffer;
-    int buffer_count = 0;
-    while (fread(&buffer, sizeof(struct BytesBuffer),1,ptr)){
-        printf("%08x", buffer.bytes);
-        buffer_count++;
-    }
+    printf("read successful");
+    // struct BytesBuffer buffer;
+    // int buffer_count = 0;
+    // while (fread(&buffer, sizeof(struct BytesBuffer),1,ptr)){
+    //     printf("%08x", buffer.bytes);
+    //     buffer_count++;
+    // }
     return 0;
 }
